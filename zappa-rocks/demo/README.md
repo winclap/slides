@@ -41,7 +41,7 @@ $ . .env/bin/activate
       ...
       "events": [{
         "function": "schedule.schedule_function",
-        "expression": "rate(5 minutes)"
+        "expression": "rate(1 minute)"
       }],
       ...
   }

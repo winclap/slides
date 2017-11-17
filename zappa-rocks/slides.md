@@ -18,8 +18,6 @@ title: Zappa rocks on AWS
 # Serverless
 ![](images/serverless-1.jpg){width=700px height=400px}
 
-#
-![](images/serverless-2.jpg)
 
 # Qué es Serverless?
 
@@ -28,6 +26,9 @@ Es un modelo de ejecución en el cual el proveedor de cómputo administra dinám
 El precio se basa en la cantidad real de recursos consumidos por una aplicación, en lugar de las unidades de capacidad adquiridas previamente.
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Serverless_computing)
+
+#
+![](images/serverless-2.jpg)
 
 # SaaS vs BaaS vs FaaS
 ![](images/LOGOS-02.png)
