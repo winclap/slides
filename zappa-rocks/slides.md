@@ -49,8 +49,26 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Serverless_computing)
 #
 ## Casos de Uso
 
+* Web Backends
+* Microservicios
+* Bots
+* Internet de las cosas (IoT)
+* Streams y procesamiento de datos
+* Tareas específicas
+
 #
-## Beneficios y/o Limitaciones
+## Beneficios
+
+* Costos
+* Cero mantenimiento de infraestructura
+
+#
+## Limitaciones
+
+* Tiempo de ejecución
+* Asignación de memoria
+* Tamaño de paquete
+* Conexiones concurrentes
 
 #
 ## Python y FaaS
