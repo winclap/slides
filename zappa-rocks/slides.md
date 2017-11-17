@@ -1,8 +1,9 @@
 ---
-title: Zappa rocks in AWS
+title: Zappa rocks on AWS
 ---
 
-# Hola...
+### Hola...
+![](images/speakers.png){width=695px height=500px}
 
 <aside class="notes">
 
@@ -29,6 +30,7 @@ El precio se basa en la cantidad real de recursos consumidos por una aplicación
 From [Wikipedia](https://en.wikipedia.org/wiki/Serverless_computing)
 
 # SaaS vs BaaS vs FaaS
+![](images/LOGOS-02.png)
 
 #
 ## FaaS: Function as a Service
@@ -42,6 +44,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Serverless_computing)
 
 #
 ## Cómo funciona FaaS?
+![](images/faas.png)
 
 #
 ## Casos de Uso
@@ -60,6 +63,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Serverless_computing)
 #
 ## Serverless Frameworks
 Facilitan la configuración y el deploy de las aplicaciones
+![](images/serverlees.png)
 
 # Zappa
 
@@ -84,12 +88,12 @@ Facilitan la configuración y el deploy de las aplicaciones
 ### Más Features ...
 * Eventos en AWS (API Gateway/S3/Kinesis/DynamoDB/SNS/SES/Alexa/...)
 * Tareas calendarizadas (Cron-like)
+* Ejecución de tareas asincrónicas
 * Múltiples Entornos (Environments)
-* Certifcados SSL
 
 #
 ### Aún más ...
-* Ejecución de tareas asincrónicas
+* Certifcados SSL
 * Invocación de Funciones Remotamente
 * Logs
 * Rollback
@@ -115,7 +119,7 @@ $ zappa init
 
 #
 ## zappa_settings.json
-```json
+```
 {
     "dev": {
         "app_function": "my_module.app",
@@ -130,7 +134,7 @@ $ zappa init
 
 #
 ## zappa_settings.yml
-```yaml
+```
 dev:
     app_function: my_module.app
     aws_region: us-east-1
@@ -168,7 +172,7 @@ $ zappa rollback dev -n 1
 ```
 
 # Scheduling
-```json
+```
 {
     "dev": {
        ...
@@ -193,7 +197,7 @@ $ zappa unschedule dev
 # Let's go rock
 ## (Demo time)
 
-# Preguntas?
+# ¿Preguntas?
 
 # ¡Muchas Gracias!
 ![](images/frank-zappa-2.jpg)
