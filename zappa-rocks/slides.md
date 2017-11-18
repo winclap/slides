@@ -99,7 +99,7 @@ Facilitan la configuración y el deploy de las aplicaciones
 # Features
 
 #
-* Python WSGI Applications
+* Aplicaciones Python WSGI
 * Microservicios (Flask)
 * Macroservicios (Django)
 
