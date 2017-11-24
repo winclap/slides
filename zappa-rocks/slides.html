@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Zappa rocks on AWS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.line-block{white-space: pre-line;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; color: #aaaaaa;  padding-left: 4px; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.bn { color: #40a070; } /* BaseN */
+code span.fl { color: #40a070; } /* Float */
+code span.ch { color: #4070a0; } /* Char */
+code span.st { color: #4070a0; } /* String */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.ot { color: #007020; } /* Other */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.fu { color: #06287e; } /* Function */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.cn { color: #880000; } /* Constant */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { color: #19177c; } /* Variable */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.op { color: #666666; } /* Operator */
+code span.bu { } /* BuiltIn */
+code span.ex { } /* Extension */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.at { color: #7d9029; } /* Attribute */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Zappa rocks on AWS</h1>
+</section>
+
+<section class="slide level1">
+
+<h3 id="hola">Hola…</h3>
+<p><img data-src="images/speakers.png" width="695" height="500" /></p>
+<aside class="notes">
+</aside>
+</section>
+<section id="data-center-propio" class="slide level1">
+<h1>Data Center Propio</h1>
+<p><img data-src="images/data-center.jpg" width="550" height="400" /></p>
+</section>
+<section id="cloud-computing" class="slide level1">
+<h1>Cloud Computing</h1>
+<p><img data-src="images/cloud-computing.jpg" width="700" height="400" /></p>
+</section>
+<section id="serverless" class="slide level1">
+<h1>Serverless</h1>
+<p><img data-src="images/serverless-1.jpg" width="700" height="400" /></p>
+</section>
+<section id="qué-es-serverless" class="slide level1">
+<h1>Qué es Serverless?</h1>
+<p>Es un modelo de ejecución en el cual el proveedor de cómputo administra dinámicamente la asignación de los recursos de la máquina.</p>
+<p>El precio se basa en la cantidad real de recursos consumidos por una aplicación, en lugar de las unidades de capacidad adquiridas previamente.</p>
+<p>From <a href="https://en.wikipedia.org/wiki/Serverless_computing">Wikipedia</a></p>
+</section>
+<section id="section" class="slide level1">
+<h1></h1>
+<p><img data-src="images/serverless-2.jpg" /></p>
+</section>
+<section id="saas-vs-baas-vs-faas" class="slide level1">
+<h1>SaaS vs BaaS vs FaaS</h1>
+<p><img data-src="images/LOGOS-02.png" /></p>
+</section>
+<section id="section-1" class="slide level1">
+<h1></h1>
+<h2 id="faas-function-as-a-service">FaaS: Function as a Service</h2>
+<ul>
+<li>Funciones de propósitos específicos</li>
+<li>Manejado por eventos</li>
+<li>Infraestructura abstracta</li>
+<li>Ambientes efímeros</li>
+<li>Se paga por los recursos consumidos</li>
+<li>Auto escalable</li>
+</ul>
+</section>
+<section id="section-2" class="slide level1">
+<h1></h1>
+<h2 id="cómo-funciona-faas">Cómo funciona FaaS?</h2>
+<p><img data-src="images/faas.png" /></p>
+</section>
+<section id="section-3" class="slide level1">
+<h1></h1>
+<h2 id="casos-de-uso">Casos de Uso</h2>
+<ul>
+<li>Web Backends</li>
+<li>Microservicios</li>
+<li>Bots</li>
+<li>Internet de las cosas (IoT)</li>
+<li>Streams y procesamiento de datos</li>
+<li>Tareas específicas</li>
+</ul>
+</section>
+<section id="section-4" class="slide level1">
+<h1></h1>
+<h2 id="beneficios">Beneficios</h2>
+<ul>
+<li>Costos</li>
+<li>Cero mantenimiento de infraestructura</li>
+</ul>
+</section>
+<section id="section-5" class="slide level1">
+<h1></h1>
+<h2 id="limitaciones">Limitaciones</h2>
+<ul>
+<li>Tiempo de ejecución</li>
+<li>Asignación de memoria</li>
+<li>Tamaño de paquete</li>
+<li>Conexiones concurrentes</li>
+</ul>
+</section>
+<section id="section-6" class="slide level1">
+<h1></h1>
+<h2 id="python-y-faas">Python y FaaS</h2>
+<ul>
+<li>AWS Lambda: Python 2.7, Python 3.6</li>
+<li>Google Cloud Functions: Python 2.7, Python &gt;=3.4</li>
+<li>Microsoft Azure Functions: Python está en modo experimental.</li>
+<li>IBM Apache OpenWhisk: no soporta Python nativamente. Puede correr código customizado en un container de Docker.</li>
+</ul>
+</section>
+<section id="section-7" class="slide level1">
+<h1></h1>
+<h2 id="serverless-frameworks">Serverless Frameworks</h2>
+<p>Facilitan la configuración y el deploy de las aplicaciones <img data-src="images/serverlees.png" /></p>
+</section>
+<section id="zappa" class="slide level1">
+<h1>Zappa</h1>
+</section>
+<section id="section-8" class="slide level1">
+<h1></h1>
+<p><img data-src="images/frank-zappa.jpg" /></p>
+</section>
+<section id="section-9" class="slide level1">
+<h1></h1>
+<p><img data-src="images/zappa.jpeg" /></p>
+</section>
+<section id="section-10" class="slide level1">
+<h1></h1>
+<h2 id="aplicaciones-python-serverless-basadas-en-eventos">Aplicaciones python Serverless basadas en eventos</h2>
+<h3 id="incluyendo-aplicaciones-web-wsgi">¡¡Incluyendo aplicaciones web WSGI!!</h3>
+</section>
+<section id="features" class="slide level1">
+<h1>Features</h1>
+</section>
+<section id="section-11" class="slide level1">
+<h1></h1>
+<ul>
+<li>Aplicaciones Python WSGI</li>
+<li>Microservicios (Flask)</li>
+<li>Macroservicios (Django)</li>
+</ul>
+</section>
+<section id="section-12" class="slide level1">
+<h1></h1>
+<h3 id="más-features">Más Features …</h3>
+<ul>
+<li>Eventos en AWS (API Gateway/S3/Kinesis/DynamoDB/SNS/SES/Alexa/…)</li>
+<li>Tareas calendarizadas (Cron-like)</li>
+<li>Ejecución de tareas asincrónicas</li>
+<li>Múltiples Entornos (Environments)</li>
+</ul>
+</section>
+<section id="section-13" class="slide level1">
+<h1></h1>
+<h3 id="aún-más">Aún más …</h3>
+<ul>
+<li>Certifcados SSL</li>
+<li>Invocación de Funciones Remotamente</li>
+<li>Logs</li>
+<li>Rollback</li>
+<li>Undeploy</li>
+</ul>
+</section>
+<section id="section-14" class="slide level1">
+<h1>…</h1>
+<ul>
+<li>Compatibilidad con VPC</li>
+<li>Keep Warm</li>
+<li>Django Management Commands</li>
+<li>Disponibilidad global</li>
+<li>Variables de Entorno Remotas vía S3</li>
+<li>C-extensions vía lambda-packages y manylinux wheels</li>
+</ul>
+</section>
+<section id="instalación" class="slide level1">
+<h1>Instalación</h1>
+<pre class="sourceCode bash" id="cb1"><code class="sourceCode bash"><div class="sourceLine" id="cb1-1" data-line-number="1">$ <span class="ex">pip</span> install zappa</div></code></pre>
+</section>
+<section id="configuración" class="slide level1">
+<h1>Configuración</h1>
+<pre class="sourceCode bash" id="cb2"><code class="sourceCode bash"><div class="sourceLine" id="cb2-1" data-line-number="1">$ <span class="ex">zappa</span> init</div></code></pre>
+</section>
+<section id="section-15" class="slide level1">
+<h1></h1>
+<h2 id="zappa_settings.json">zappa_settings.json</h2>
+<pre><code>{
+    &quot;dev&quot;: {
+        &quot;app_function&quot;: &quot;my_module.app&quot;,
+        &quot;aws_region&quot;: &quot;us-east-1&quot;,
+        &quot;profile_name&quot;: &quot;default&quot;,
+        &quot;project_name&quot;: &quot;zappa-project&quot;,
+        &quot;runtime&quot;: &quot;python3.6&quot;,
+        &quot;s3_bucket&quot;: &quot;zappa-bucket&quot;
+    }
+}</code></pre>
+</section>
+<section id="section-16" class="slide level1">
+<h1></h1>
+<h2 id="zappa_settings.yml">zappa_settings.yml</h2>
+<pre><code>dev:
+    app_function: my_module.app
+    aws_region: us-east-1
+    profile_name: default
+    project_name: zappa-project
+    runtime: python3.6
+    s3_bucket: zappa-bucket</code></pre>
+</section>
+<section id="deploy" class="slide level1">
+<h1>Deploy</h1>
+<pre class="sourceCode bash" id="cb5"><code class="sourceCode bash"><div class="sourceLine" id="cb5-1" data-line-number="1">$ <span class="ex">zappa</span> deploy dev</div>
+<div class="sourceLine" id="cb5-2" data-line-number="2"><span class="ex">Deploying..</span></div>
+<div class="sourceLine" id="cb5-3" data-line-number="3"><span class="ex">Your</span> application is now live at: https://7k6anj0k99.execute-api.us-east-1.amazonaws.com/dev</div></code></pre>
+</section>
+<section id="monitoreo" class="slide level1">
+<h1>Monitoreo</h1>
+<pre class="sourceCode bash" id="cb6"><code class="sourceCode bash"><div class="sourceLine" id="cb6-1" data-line-number="1">$ <span class="ex">zappa</span> tail dev --since 10m --filter <span class="st">&quot;GET&quot;</span></div></code></pre>
+</section>
+<section id="develop" class="slide level1">
+<h1>Develop</h1>
+<pre class="sourceCode bash" id="cb7"><code class="sourceCode bash"><div class="sourceLine" id="cb7-1" data-line-number="1">$ <span class="ex">zappa</span> update dev</div>
+<div class="sourceLine" id="cb7-2" data-line-number="2"><span class="ex">Updating..</span></div>
+<div class="sourceLine" id="cb7-3" data-line-number="3"><span class="ex">Your</span> application is now live at: https://7k6anj0k99.execute-api.us-east-1.amazonaws.com/dev</div></code></pre>
+</section>
+<section id="section-17" class="slide level1">
+<h1></h1>
+<p><img data-src="images/nuk.jpg" width="600" height="600" /></p>
+</section>
+<section id="rollback" class="slide level1">
+<h1>Rollback</h1>
+<pre class="sourceCode bash" id="cb8"><code class="sourceCode bash"><div class="sourceLine" id="cb8-1" data-line-number="1">$ <span class="ex">zappa</span> rollback dev -n 1</div></code></pre>
+</section>
+<section id="scheduling" class="slide level1">
+<h1>Scheduling</h1>
+<pre><code>{
+    &quot;dev&quot;: {
+       ...
+       &quot;events&quot;: [{
+           &quot;function&quot;: &quot;your_module.your_function&quot;,
+           &quot;expression&quot;: &quot;rate(1 minute)&quot;
+       }],
+       ...
+    }
+}</code></pre>
+<pre class="sourceCode bash" id="cb10"><code class="sourceCode bash"><div class="sourceLine" id="cb10-1" data-line-number="1">$ <span class="ex">zappa</span> schedule dev</div></code></pre>
+<pre class="sourceCode bash" id="cb11"><code class="sourceCode bash"><div class="sourceLine" id="cb11-1" data-line-number="1">$ <span class="ex">zappa</span> unschedule dev</div></code></pre>
+</section>
+<section id="y-mucho-más" class="slide level1">
+<h1>Y mucho más …</h1>
+</section>
+<section id="lets-go-rock" class="slide level1">
+<h1>Let’s go rock</h1>
+<h2 id="demo-time">(Demo time)</h2>
+</section>
+<section id="preguntas" class="slide level1">
+<h1>¿Preguntas?</h1>
+</section>
+<section id="muchas-gracias" class="slide level1">
+<h1>¡Muchas Gracias!</h1>
+<p><img data-src="images/frank-zappa-2.jpg" /></p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
